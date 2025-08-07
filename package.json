@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "scripts": {
-    "start": "node api/log.js"
+  "engines": {
+    "node": "18.x"
   }
 }

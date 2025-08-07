@@ -3,18 +3,23 @@
   "builds": [
     {
       "src": "api/log.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": { 
+        "includeFiles": ["api/**"],
+        "maxLambdaSize": "10mb"
+      }
     }
   ],
   "routes": [
     {
       "src": "/api/log",
       "dest": "/api/log.js",
-      "methods": ["POST"]  
+      "methods": ["POST"]
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html" 
+      "dest": "/public/index.html",
+      "status": 200
     }
   ]
 }
