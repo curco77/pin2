@@ -1,15 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/log.js",
-      "use": "@vercel/node",
-      "config": { 
-        "includeFiles": ["api/**"],
-        "maxLambdaSize": "10mb"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/api/log",
